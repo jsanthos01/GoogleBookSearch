@@ -1,9 +1,9 @@
 import React from 'react'
 
-function ShowResults() {
+function SavedList() {
     return (
         <div >
-            <p><strong>Your Result:</strong></p>
+            <p><strong>Your Pinned Books:</strong></p>
             <hr/>
             <div className="container mb-3">
                 <div className="row">
@@ -22,9 +22,10 @@ function ShowResults() {
                             occaecat cupidatat non proident, sunt
                             in culpa qui officia deserunt mollit anim id est laborum.
                         </p>
-                        <div class="container d-flex mx-auto ">
-                            <button type="button" class="btn btn-outline-success mr-2">Search</button>
-                            <button type="button" class="btn btn-outline-primary">Saved</button>
+                            
+                        <div class="container d-flex ">
+                            <button type="button" class="btn btn-outline-info mr-2">View</button>
+                            <button type="button" class="btn btn-outline-danger">Delete</button>
                         </div>
                     </div>
                 </div>
@@ -46,10 +47,9 @@ function ShowResults() {
                             occaecat cupidatat non proident, sunt
                             in culpa qui officia deserunt mollit anim id est laborum.
                         </p>
-                        
                         <div class="container d-flex mx-auto ">
-                            <button type="button" class="btn btn-outline-success mr-2">Search</button>
-                            <button type="button" class="btn btn-outline-primary">Saved</button>
+                            <button type="button" class="btn btn-outline-info mr-2">View</button>
+                            <button type="button" class="btn btn-outline-danger">Delete</button>
                         </div>
                     </div>
                 </div>
@@ -59,4 +59,4 @@ function ShowResults() {
     )
 }
 
-export default ShowResults
+export default SavedList

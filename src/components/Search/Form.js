@@ -10,7 +10,7 @@ function Form() {
                 <input className="form-control" />
             </div>
             <div className="pull-right">
-                <button type="submit" className="btn btn-lg btn-danger float-right">
+                <button type="submit" className="btn btn-lg btn-outline-primary float-right">
                 Search
                 </button>
             </div>
