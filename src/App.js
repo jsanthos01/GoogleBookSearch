@@ -8,8 +8,8 @@ import SearchPage from './components/Search/SearchPage';
 function App() {
   return (
     <Router>
-      <div >
         <Navbar />
+      <div className="container">
         <Route exact path={["/","/search"]} component={SearchPage} />
         <Route exact path="/saved" component={SavedPage} />
       </div>
