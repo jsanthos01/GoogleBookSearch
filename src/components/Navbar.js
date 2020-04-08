@@ -1,23 +1,21 @@
-import React from 'react';
+import React, {useState} from 'react';
 import {Link, useLocation} from 'react-router-dom';
 
 function Navbar() {
     const location = useLocation();
-    const style = {
-        logo: { width: '64px', height: '64px' }
-    }
-
+    const [isShown, setShown] = useState(false);
+    let showClass = !isShown ? `collapse navbar-collapse`: `collapse navbar-collapse show`;
     return (
-        <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <nav className="navbar navbar-expand-lg navbar-light bg-light">
             <Link to="/" className="navbar-brand">
                 BookFuzz
             </Link>
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
+            <button onClick={() => setShown(!isShown)} class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span className="navbar-toggler-icon"></span>
             </button>
 
-            <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                <ul class="navbar-nav mr-auto">
+            <div className={showClass} id="navbarSupportedContent">
+                <ul className="navbar-nav mr-auto">
                     <li className="nav-item">
                         <Link to="/search" className={location.pathname === "/search" ? "nav-link active" : "nav-link"}>
                         Search
