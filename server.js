@@ -3,14 +3,12 @@ const mongoose = require("mongoose");
 const app = express();
 const fs = require( "fs" );
 const axios = require("axios");
+const path = require("path")
 
-
-//includes the orm file where our logic is written --> same as we did in mySql
 const orm = require( './db/orm.mongoose' );
 const PORT = process.env.PORT || 8080;
 
-
-app.use(express.static("client/build"));
+app.use(express.static(path.join(__dirname, "client/build")));
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
