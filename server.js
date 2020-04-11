@@ -14,6 +14,10 @@ app.use(express.static("client/build"));
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
+app.get('/', function( req,res ){
+  console.log("redirect to index page!");
+  res.sendFile( path.join(__dirname, '/client/build/', 'index.html') );
+});
 
 app.post("/api/savedBooks", async (req, res) => {
   const bookData = req.body;
