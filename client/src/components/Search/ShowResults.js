@@ -44,7 +44,7 @@ function ShowResults(props) {
                 {resultArray.map(book => 
                     <div className="row" style={rowStyle}>
                         <div className="col-lg-3" style={imageStyle}>
-                        {book.volumeInfo.imageLinks && book.volumeInfo.imageLinks.thumbnail ? <img src={book.volumeInfo.imageLinks.thumbnail} className="img-fluid w-100"/> : '[no image]' }
+                        {book.volumeInfo.imageLinks && book.volumeInfo.imageLinks.thumbnail ? <img src={book.volumeInfo.imageLinks.thumbnail} className="img-fluid " style={{width: "70%"}}/> : '[no image]' }
                         </div>
                         <div className="col-lg-9 d-flex justify-content-center flex-column">
                             <h2><em>{book.volumeInfo.title}</em></h2>

@@ -4,16 +4,23 @@ function SavedList(props) {
     // console.log("Inside the saved List page");
     // console.log("Props: ", props.savedBooks)
     const savedBooksInfo = props.savedBooks;
-
+    const imageStyle={
+        display: "flex",
+        justifyContent: "center",
+        padding: "20px"
+    }
+    const rowStyle={
+        marginBottom: "60px"
+    }
     return (
         <div >
             <p><strong>Your Pinned Books:</strong></p>
             <hr/>
             {savedBooksInfo.map((book)=>(
                 <div className="container mb-3">
-                    <div className="row">
-                        <div className="col-lg-4">
-                            <img src={book.imageLinks} className="img-fluid img-thumbnail"/>
+                    <div className="row" style={rowStyle}>
+                        <div className="col-lg-4" style={imageStyle}>
+                            <img src={book.imageLinks} className="img-fluid " style={{width: "70%"}}/>
                         </div>
                         <div className="col-lg-8 d-flex justify-content-center flex-column">
                             <h2><em>{book.title}</em></h2>
