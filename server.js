@@ -26,15 +26,28 @@ app.get("/api/book/:id", async (req, res) =>{
 
 });
 
+app.post("/api/savedBooks", async (req, res) => {
+  const bookData = req.body;
+  console.log(bookData);
+  const bookResult = await orm.postSavedBooks( bookData );
+  res.send(bookResult );
+})
+
+app.get("/api/savedBooks", async (req, res) => {
+  const bookResult = await orm.getSavedBooks( );
+  res.send(bookResult );
+})
+
+
 //endpoint that deleted a book from saved list
-app.delete("/api/book/:id", async (req, res) =>{
+app.delete("/api/deleteBook/:id", async (req, res) =>{
+  console.log(req.params.id);
+  const id = req.params.id
+  const deleteBookDb = await orm.deleteBook(id);
+
+  res.send(deleteBookDb)
 
 });
-//endpoint that updates the saved bookList
-app.put("/api/book/:id", async (req, res) =>{
-
-});
-
 
 // Start the API server
 app.listen(PORT, () =>

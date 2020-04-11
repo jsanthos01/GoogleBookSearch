@@ -1,6 +1,4 @@
-import React, {useState} from 'react';
-import { renderToString } from 'react-dom/server'
-
+import React, {useState, useContext} from 'react';
 import Header from './Header';
 import Form from './Form';
 import ShowResults from './ShowResults';
@@ -9,10 +7,6 @@ export const UserContext = React.createContext();
 function SearchPage() {
     const [bookList, setBookList] = useState([]);
 
-    let html = '';
-    if (bookList.length >1) {
-        html = renderToString(<ShowResults  bookList={bookList}/>)
-    }
     return (
         <div>
             <UserContext.Provider value={{bookList, setBookList}}>
@@ -35,8 +29,7 @@ function SearchPage() {
                             <h3 class="col-11"><i class="fas fa-search-plus"></i>  Search Results </h3>
                         </div>
                         <hr/>
-                        <div dangerouslySetInnerHTML={{__html: html}}>
-                        </div>
+                        { bookList.length>1 ? <ShowResults  bookList={bookList} /> : '' }
                     </div>
                 </div>
             </div>

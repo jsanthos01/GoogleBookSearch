@@ -1,7 +1,8 @@
-import React from 'react'
+import React, {useState} from 'react';
 
 function ShowResults(props) {
     const resultArray = props.bookList;
+
     const imageStyle={
         display: "flex",
         justifyContent: "center",
@@ -9,6 +10,30 @@ function ShowResults(props) {
     }
     const rowStyle={
         marginBottom: "60px"
+    }
+     
+    async function getBookId(bookVal){
+        console.log("inside getBookId Function :", bookVal);
+        
+        let BookData = {
+            title: bookVal.title,
+            imageLinks:bookVal.imageLinks.thumbnail,
+            description: bookVal.description,
+            authors: bookVal.authors,
+            infoLinks:bookVal.infoLink
+
+        }
+
+        const postBookData = await fetch('/api/savedBooks',
+        {  
+            method: 'post',
+            headers: {
+                'Accept': 'application/json, text/plain, */*',
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(BookData)
+        }).then( result=>result.json())
+        console.log(postBookData.message)
     }
 
     return (
@@ -27,13 +52,12 @@ function ShowResults(props) {
                             <p>{book.volumeInfo.description}</p>
                             <div class="container d-flex mx-auto ">
                                 <a href={book.volumeInfo.infoLink} ><button type="button" class="btn btn-outline-success mr-2">View</button></a>
-                                <a href="/saved" ><button type="button" class="btn btn-outline-primary">Saved</button></a>
+                                <button type="button" onClick={() => getBookId(book.volumeInfo)} class="btn btn-outline-primary mr-2">Save</button>
                             </div>
                         </div>
                     </div>
                 )}
             </div>
-            
         </div>
     )
 }
