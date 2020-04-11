@@ -9,22 +9,11 @@ const axios = require("axios");
 const orm = require( './db/orm.mongoose' );
 const PORT = process.env.PORT || 8080;
 
-// Configure body parsing for AJAX requests
+
+app.use(express.static("client/build"));
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
-// Serve up static assets
- app.use(express.static("client/build"));
-
-//endpoint that gets the info for a specific item
-app.get("/api/book/:id", async (req, res) =>{
-  //read ONE of the products in products.json file and then send it 
-  const id = req.params.id;
-  const products = JSON.parse(fs.readFileSync("db/products.json"));
-  const product = products.filter(product => id === product.id)[0];
-  res.send(product);
-
-});
 
 app.post("/api/savedBooks", async (req, res) => {
   const bookData = req.body;
