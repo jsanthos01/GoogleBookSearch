@@ -8,6 +8,7 @@ function Navbar() {
     return (
         <nav className="navbar navbar-expand-lg navbar-light bg-light">
             <Link to="/" className="navbar-brand">
+                <img src="https://www.netclipart.com/pp/m/237-2377532_lecture-icon-study-book-icon-png.png" style={{width: "40px"}}/>
                 BookFuzz
             </Link>
             <button onClick={() => setShown(!isShown)} class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
