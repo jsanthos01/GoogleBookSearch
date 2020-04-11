@@ -1,6 +1,6 @@
 const mongoose = require('mongoose');
 
-mongoose.connect(`mongodb://localhost:27017/${process.env.DB_NAME}`, {useNewUrlParser: true});
+mongoose.connect(`mongodb://user:password1@ds125479.mlab.com:25479/heroku_pf430d0r`, {userMongoClient: true, useNewUrlParser: true});
 
 const db = require( './models' );
 
