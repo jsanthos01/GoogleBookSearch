@@ -19,12 +19,7 @@ async function postSavedBooks(bookData){
    const dbBooks = new db.books( bookStuff );
 
    //insert the bookData inside the collection
-   const saveUser = await dbBooks.save().then(
-      (data) => {
-         console.log(data);
-      }).catch((err) =>{
-         console.log(err);
-      });
+   const saveUser = await dbBooks.save();
    
    return { message: "Book successfully saved!!"};
 }
