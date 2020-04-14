@@ -28,10 +28,6 @@ function ShowResults(props) {
         const postBookData = await fetch('/api/savedBooks',
         {  
             method: 'POST',
-            headers: {
-                'Accept': 'application/json, text/plain, */*',
-                'Content-Type': 'application/json'
-            },
             body: JSON.stringify(BookData)
         }).then( result=>result.json())
         console.log(postBookData.message)
