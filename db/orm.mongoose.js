@@ -1,6 +1,6 @@
 const mongoose = require('mongoose');
 
-mongoose.connect(process.env.MONGODB_URI || `mongodb://localhost:27017/googlebooks`, {useNewUrlParser: true});
+mongoose.connect(process.env.MONGODB_URI || `mongodb://localhost:27017/${process.env.DB_NAME}`, {useNewUrlParser: true});
 const db = require( './models' );
 
 
