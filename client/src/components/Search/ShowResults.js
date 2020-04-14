@@ -15,7 +15,7 @@ function ShowResults(props) {
     async function getBookId(bookVal){
         console.log("inside getBookId Function :", bookVal);
         
-        let BookData = {
+        const BookData = {
             title: bookVal.title,
             imageLinks:bookVal.imageLinks.thumbnail,
             description: bookVal.description,
@@ -29,6 +29,11 @@ function ShowResults(props) {
         const postBookData = await fetch('/api/savedBooks',
         {  
             method: 'POST',
+            headers: {
+                'Accept': 'application/json, text/plain, /',
+                'Content-Type': 'application/json',
+                'Session': localStorage.session ? localStorage.session : ''
+            },
             body: JSON.stringify(BookData)
         }).then( result=>result.json())
         console.log(postBookData.message)

@@ -1,10 +1,9 @@
+require('dotenv').config()
 const express = require("express");
-const mongoose = require("mongoose");
 const app = express();
 const fs = require( "fs" );
 const axios = require("axios");
 const path = require("path")
-
 const orm = require( './db/orm.mongoose' );
 const PORT = process.env.PORT || 8080;
 
@@ -16,6 +15,7 @@ app.post("/api/savedBooks", async (req, res) => {
   const bookData = req.body;
   console.log(bookData);
   const bookResult = await orm.postSavedBooks( bookData );
+  console.log(bookResult)
   res.send(bookResult );
 })
 
