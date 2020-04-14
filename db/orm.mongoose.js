@@ -12,13 +12,14 @@ async function postSavedBooks(bookData){
    const bookStuff = {
       title: bookData.title,
       imageLinks: bookData.imageLinks,
-      description:bookData.description,
+      description: bookData.description,
       authors: bookData.authors,
       infoLinks: bookData.infoLinks
    }
    //creating a new modal object
    const dbBooks = new db.books( bookStuff );
 
+   console.log("dbbooks is ready ", dbBooks)
    //insert the bookData inside the collection
    const saveUser = await dbBooks.save();
    console.log("saveUser=", saveUser)
