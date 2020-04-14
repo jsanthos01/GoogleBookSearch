@@ -10,7 +10,7 @@ const PORT = process.env.PORT || 8080;
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
-app.use(express.static(path.join(__dirname, "client/build")));
+app.use(express.static(path.join(__dirname, "build")));
 
 app.post("/api/savedBooks", async (req, res) => {
   const bookData = req.body;
@@ -37,7 +37,7 @@ app.delete("/api/deleteBook/:id", async (req, res) =>{
 
 app.get('/*', function( req,res ){
   console.log("redirect to index page!");
-  res.sendFile( path.join(__dirname, '/client/build/', 'index.html') );
+  res.sendFile( path.join(__dirname, 'build', 'index.html') );
 });
 
 // Start the API server
