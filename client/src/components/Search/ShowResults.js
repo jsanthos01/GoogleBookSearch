@@ -24,7 +24,7 @@ function ShowResults(props) {
 
         }
 
-        console.log(BookData)
+        // console.log(BookData)
 
         const postBookData = await fetch('/api/savedBooks',
         {  

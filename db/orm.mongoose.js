@@ -7,8 +7,7 @@ const db = require( './models' );
 
 
 async function postSavedBooks(bookData){
-   console.log("Inside orm file")
-   console.log(bookData);
+   console.log("[postSavedBooks]", bookData.title);
 
    const bookStuff = {
       title: bookData.title,
@@ -22,6 +21,7 @@ async function postSavedBooks(bookData){
 
    //insert the bookData inside the collection
    const saveUser = await dbBooks.save();
+   console.log("saveUser=", saveUser)
    if( saveUser._id )
         return {message: `Book  ${saveUser.title}  successfully saved`, id: saveUser._id};
     else

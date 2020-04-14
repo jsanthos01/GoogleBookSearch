@@ -13,9 +13,9 @@ app.use(express.urlencoded({ extended: false }));
 
 app.post("/api/savedBooks", async (req, res) => {
   const bookData = req.body;
-  console.log(bookData);
+  // console.log(bookData);
   const bookResult = await orm.postSavedBooks( bookData );
-  console.log(bookResult)
+  // console.log(bookResult)
   res.send(bookResult );
 })
 
