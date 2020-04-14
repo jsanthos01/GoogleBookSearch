@@ -20,8 +20,10 @@ async function postSavedBooks(bookData){
 
    //insert the bookData inside the collection
    const saveUser = await dbBooks.save();
-   
-   return { message: "Book successfully saved!!"};
+   if( saveUser._id )
+        return {message: `Book  ${saveUser.title}  successfully saved`, id: saveUser._id};
+    else
+        return { message: "Sorry failed", id: false };
 }
 
 async function getSavedBooks(){
