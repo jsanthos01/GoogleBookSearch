@@ -12,11 +12,6 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(express.static(path.join(__dirname, "client/build")));
 
-app.get('/*', function( req,res ){
-  console.log("redirect to index page!");
-  res.sendFile( path.join(__dirname, '/client/build/', 'index.html') );
-});
-
 app.post("/api/savedBooks", async (req, res) => {
   const bookData = req.body;
   console.log(bookData);
@@ -38,6 +33,11 @@ app.delete("/api/deleteBook/:id", async (req, res) =>{
 
   res.send(deleteBookDb)
 
+});
+
+app.get('/*', function( req,res ){
+  console.log("redirect to index page!");
+  res.sendFile( path.join(__dirname, '/client/build/', 'index.html') );
 });
 
 // Start the API server
