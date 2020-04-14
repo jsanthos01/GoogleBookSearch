@@ -24,9 +24,10 @@ function ShowResults(props) {
 
         }
 
+
         const postBookData = await fetch('/api/savedBooks',
         {  
-            method: 'post',
+            method: 'POST',
             headers: {
                 'Accept': 'application/json, text/plain, */*',
                 'Content-Type': 'application/json'
