@@ -14,6 +14,7 @@ function SavedPage() {
         setSavedBooks(getBooks);
     }
 
+    // [] runs useEffect only once and that is when the page is loaded
     useEffect(function(){
         getSavedBookList();
     },[])
