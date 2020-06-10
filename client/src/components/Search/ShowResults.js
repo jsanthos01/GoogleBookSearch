@@ -1,7 +1,8 @@
-import React, {useState} from 'react';
+import React, {useState, useContext} from 'react';
+import {UserContext} from './SearchPage'
 
-function ShowResults(props) {
-    const resultArray = props.bookList;
+function ShowResults() {
+    const { bookList, setBookList } = useContext(UserContext);
 
     const imageStyle={
         display: "flex",
@@ -12,9 +13,7 @@ function ShowResults(props) {
         marginBottom: "60px"
     }
      
-    async function getBookId(bookVal){
-        console.log("inside getBookId Function :", bookVal);
-        
+    async function getBookId(bookVal){        
         const BookData = {
             title: bookVal.title,
             imageLinks:bookVal.imageLinks.thumbnail,
@@ -23,8 +22,6 @@ function ShowResults(props) {
             infoLinks:bookVal.infoLink
 
         }
-
-        // console.log(BookData)
 
         const postBookData = await fetch('/api/savedBooks',
         {  
@@ -36,7 +33,6 @@ function ShowResults(props) {
             },
             body: JSON.stringify(BookData)
         }).then( result=>result.json())
-        console.log(postBookData.message)
     }
 
     return (
@@ -44,7 +40,7 @@ function ShowResults(props) {
             <p><strong>Your Result:</strong></p>
             <hr/>
             <div className="container mb-3">
-                {resultArray.map(book => 
+                {bookList.map(book => 
                     <div className="row" style={rowStyle}>
                         <div className="col-lg-3" style={imageStyle}>
                         {book.volumeInfo.imageLinks && book.volumeInfo.imageLinks.thumbnail ? <img src={book.volumeInfo.imageLinks.thumbnail} className="img-fluid " style={{width: "70%"}}/> : '[no image]' }

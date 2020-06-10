@@ -2,6 +2,8 @@ import React,{useState, useEffect} from 'react'
 import Header from './Header';
 import SavedList from './SavedList';
 
+// Parent component with three child components
+// Used useContext() to pass data to through the component tree. Alternative to manually passing props for every level
 export const UserSavedBook = React.createContext();
 
 function SavedPage() {
@@ -9,8 +11,6 @@ function SavedPage() {
 
     async function getSavedBookList(){
         const getBooks = await fetch("/api/savedBooks").then(res => res.json());
-        console.log("Inside the SavedPage Component")
-        console.log(getBooks);
         setSavedBooks(getBooks);
     }
 
@@ -19,21 +19,13 @@ function SavedPage() {
     },[])
     
     async function deleteBook(id){
-        console.log("inside the deleteBook function");
-        console.log(id);
-
-        const deleteBook = await fetch(`/api/deleteBook/${id}`, 
-        {
-            method: 'DELETE'
-        }).then(result => result.json());
-        console.log(deleteBook);
-
+        const deleteBookFunc = await fetch(`/api/deleteBook/${id}`, { method: 'DELETE'}).then(result => result.json());
         getSavedBookList();
     }
 
     return (
         <div>
-            <UserSavedBook.Provider value={{savedBooks, setSavedBooks}} >
+            <UserSavedBook.Provider value={{savedBooks, setSavedBooks, deleteBook}} >
                 <Header />
                 <div className="result container mb-5">
                     <div class="card">
@@ -42,7 +34,7 @@ function SavedPage() {
                                 <h3 class="col-11"><i class="fas fa-cloud-download-alt"></i>  Pinned Books </h3>
                             </div>
                             <hr/>
-                            <SavedList savedBooks={savedBooks} deleteBook={deleteBook} />
+                            <SavedList />
                         </div>
                     </div>
                 </div>

@@ -1,42 +1,38 @@
 require('dotenv').config()
 const express = require("express");
 const app = express();
-const fs = require( "fs" );
-const axios = require("axios");
 const path = require("path")
 const orm = require( './db/orm.mongoose' );
 const PORT = process.env.PORT || 8080;
 
+//middleware that reads incoming JSON objects
 app.use(express.json());
-app.use(express.static(path.join(__dirname, "build")));
 app.use(express.urlencoded({ extended: false }));
 
+//built-in middleware function used to server static files
+app.use(express.static( path.join(__dirname, "build")) );
+
+// handle POST requests to /api/savedBooks
 app.post("/api/savedBooks", async (req, res) => {
   const bookData = req.body;
-  // console.log(bookData);
   const bookResult = await orm.postSavedBooks( bookData );
-  // console.log(bookResult)
-  res.send(bookResult );
+  res.send(bookResult);
 })
 
+// handle GET requests to /api/savedBooks
 app.get("/api/savedBooks", async (req, res) => {
   const bookResult = await orm.getSavedBooks( );
   res.send(bookResult );
 })
 
-
-//endpoint that deleted a book from saved list
+// handle DELETE requests to /api/deleteBook/:id
 app.delete("/api/deleteBook/:id", async (req, res) =>{
-  console.log(req.params.id);
   const id = req.params.id
   const deleteBookDb = await orm.deleteBook(id);
-
   res.send(deleteBookDb)
-
 });
 
 app.get('/*', function( req,res ){
-  console.log("redirect to index page!");
   res.sendFile( path.join(__dirname, 'build', 'index.html') );
 });
 

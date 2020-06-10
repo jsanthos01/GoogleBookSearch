@@ -1,9 +1,8 @@
 import React, {useContext} from 'react'
+import {UserSavedBook} from './SavedPage'
 
 function SavedList(props) {
-    // console.log("Inside the saved List page");
-    // console.log("Props: ", props.savedBooks)
-    const savedBooksInfo = props.savedBooks;
+    const {savedBooks, setSavedBooks, deleteBook} = useContext(UserSavedBook);
     const imageStyle={
         display: "flex",
         justifyContent: "center",
@@ -16,7 +15,7 @@ function SavedList(props) {
         <div >
             <p><strong>Your Pinned Books:</strong></p>
             <hr/>
-            {savedBooksInfo.map((book)=>(
+            {savedBooks.map((book)=>(
                 <div className="container mb-3">
                     <div className="row" style={rowStyle}>
                         <div className="col-lg-4" style={imageStyle}>
@@ -29,7 +28,7 @@ function SavedList(props) {
                             </p>
                             <div class="container d-flex ">
                                 <a href={book.infoLinks}><button type="button" class="btn btn-outline-info mr-2">View</button></a>
-                                <button type="button" onClick={()=> props.deleteBook(book._id)} class="btn btn-outline-danger">Delete</button>
+                                <button type="button" onClick={()=> deleteBook(book._id)} class="btn btn-outline-danger">Delete</button>
                             </div>
                         </div>
                     </div>

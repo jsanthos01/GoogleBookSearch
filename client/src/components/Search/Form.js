@@ -2,22 +2,20 @@ import React, { useState, useContext } from 'react'
 import {UserContext} from './SearchPage'
 
 function Form() {
-
+    //updates the current state of inputSearch as soon as the user starts typing
     const [ inputSearch, setInputSearch ] = useState("");
-    const {bookList, setBookList} = useContext(UserContext);
+    const { bookList, setBookList } = useContext(UserContext);
+
+    // when user types, the value of inputSearch is immediately being updated
     function handleInputChange(e){
         let newInput = e.target.value;
-        console.log(newInput);
         setInputSearch(newInput);
     }
 
-    //gets the book list
+    //loads the booklist with the give search input
     async function loadBookList(e){
         e.preventDefault();
-        
         const newBookList = await fetch( `https://www.googleapis.com/books/v1/volumes?q=${inputSearch}`).then( result=>result.json())
-        console.log("inside the search folder form file")
-        console.log(newBookList.items)
         setBookList(newBookList.items);
     }
 

@@ -20,4 +20,4 @@ A React-based Google Books Search that displays books based on the what the user
 
 ## Link 
 
-[Heroku]( https://google-books-hw30.herokuapp.com/)
+[Heroku](https://google-books-hw30.herokuapp.com/)

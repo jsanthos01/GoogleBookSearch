@@ -8,7 +8,9 @@ const bookShema = new Schema({
   authors: [{type: String}],
   infoLinks: {type: String}  
 });
+
 const books = mongoose.model("books", bookShema);
 
+//export the name of model and the schema of the model
 module.exports = books;
 
